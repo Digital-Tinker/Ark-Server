@@ -1,0 +1,7 @@
+---
+- hosts: ark_server
+  become: true
+  vars_files:
+    - roles/ark/defaults/servpw
+  roles:
+    - role: ark

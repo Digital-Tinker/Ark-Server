@@ -1,0 +1,47 @@
+---
+- name: Set up variables for Aberration Server
+  set_fact:
+    server_folder_name: "server_aberration"
+    server_name: "DTs Cluster: Aberration"
+    server_game_port: "7781"
+    server_browser_port: "27017"
+    server_rcon_port: "32332"
+    ark_user: "digitaltinker"
+
+- name: Set path variables
+  set_fact:
+    template_path: "/home/digitaltinker/ansible/roles/ark/templates"
+    server_root_path: "/home/digitaltinker/ark/{{ server_folder_name }}/"
+    server_config_path: "/home/digitaltinker/ark/{{ server_folder_name }}/server/shootergame/saved/config/linuxserver"
+
+- name: Copy arkmanager.cfg to server root folder
+  template:
+    src: "{{ template_path }}/arkmanager.cfg.j2"
+    dest: "{{ server_root_path }}/arkmanager.cfg"
+    owner: {{ ark_user }}
+    group: {{ ark_user }}
+    mode: 0600
+
+- name: Copy Game.ini to config folder
+  template:
+    src: "{{ template_path }}/Game.ini.j2"
+    dest: "{{ server_config_path }}/Game.ini"
+    owner: {{ ark_user }}
+    group: {{ ark_user }}
+    mode: 0600
+
+- name: Copy GameUserSettings.ini to config folder
+  template:
+    src: "{{ template_path }}/GameUserSettings.ini.j2"
+    dest: "{{ server_config_path }}/GameUserSettings.ini"
+    owner: {{ ark_user }}
+    group: {{ ark_user }}
+    mode: 0600
+
+- name: Copy Engine.ini to config folder
+  template:
+    src: "{{ template_path }}/Engine.ini.j2"
+    dest: "{{ server_config_path }}/Engine.ini"
+    owner: {{ ark_user }}
+    group: {{ ark_user }}
+    mode: 0600

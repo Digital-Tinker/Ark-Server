@@ -1,0 +1,9 @@
+- name: Run all update server tasks
+  include_tasks: "{{ item }}"
+  loop:
+    - update_island.yml
+    - update_scorchedearth.yml
+    - update_aberration.yml
+    - update_extinction.yml
+    - update_genesis1.yml
+    - update_genesis2.yml 
